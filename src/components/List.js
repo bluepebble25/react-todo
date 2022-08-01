@@ -1,6 +1,6 @@
 import React from 'react'
 
-function List({ todoList, setTodoList, data }) {
+function List({ todoList, setTodoList, data, provided, snapshot }) {
   const handleClickDelete = (id) => {
     let newTodoList = todoList.filter((data) => data.id !== id);
     setTodoList(newTodoList);
@@ -20,7 +20,11 @@ function List({ todoList, setTodoList, data }) {
   return (
     <div
       key={data.id}
-      className="flex items-center justify-between w-full px-4 py-1 my-2 text-gray-600 bg-gray-50 border rounded">
+      {...provided.draggableProps}
+      ref={provided.innerRef}
+      {...provided.dragHandleProps}
+      className={`${snapshot.isDragging ? "bg-gray-200" : "bg-gray-50"} flex items-center justify-between w-full px-4 py-1 my-2 text-gray-600 border rounded`}
+    >
       <div>
         <input type="checkbox" defaultChecked={false} className="mr-1" onClick={() => {handleCompleteChange(data.id)}} />
         <span className={data.isCompleted ? "line-through" : "none"}>{data.title}</span>
