@@ -2,7 +2,7 @@ import React from 'react'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import List from './List';
 
-function Lists({todoList, setTodoList}) {
+const Lists = React.memo(({todoList, setTodoList}) => {
   const handleEnd = (result) => {
     // result가 포함하는 정보: source(출발지)와 destination(목적지)의 정보
     if(!result.destination) return;
@@ -41,6 +41,6 @@ function Lists({todoList, setTodoList}) {
       </DragDropContext>
     </div>
   )
-}
+});
 
 export default Lists

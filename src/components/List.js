@@ -1,7 +1,7 @@
 import React from 'react'
 
-function List({ todoList, setTodoList, data, provided, snapshot }) {
-  const handleClickDelete = (id) => {
+const List = React.memo(({todoList, setTodoList, data, provided, snapshot}) => {
+  const handleDeleteClick = (id) => {
     let newTodoList = todoList.filter((data) => data.id !== id);
     setTodoList(newTodoList);
   };
@@ -30,10 +30,10 @@ function List({ todoList, setTodoList, data, provided, snapshot }) {
         <span className={data.isCompleted ? "line-through" : "none"}>{data.title}</span>
       </div>
       <div>
-        <button className="px-3 py-1 border rounded-full text-gray-500 bg-white" onClick={() => handleClickDelete(data.id)}>x</button>
+        <button className="px-3 py-1 border rounded-full text-gray-500 bg-white" onClick={() => handleDeleteClick(data.id)}>x</button>
       </div>
     </div>
   )
-}
+});
 
 export default List
