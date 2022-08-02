@@ -3,8 +3,10 @@ import './App.css';
 import Lists from './components/Lists';
 import Form from './components/Form';
 
+const initialTodoList = localStorage.getItem('todoList') ? JSON.parse(localStorage.getItem('todoList')) : [];
+
 function App() {
-  const [todoList, setTodoList] = useState([]);
+  const [todoList, setTodoList] = useState(initialTodoList);
   const [inputValue, setInputValue] = useState("");
 
   const handleSubmit = (e) => {
@@ -16,12 +18,15 @@ function App() {
       isCompleted: false
     };
 
-    setTodoList([...todoList, newTodo]);
+    let newTodoList = [...todoList, newTodo];
+    setTodoList(newTodoList);
+    localStorage.setItem('todoList', JSON.stringify(newTodoList));
     setInputValue("");
   };
 
   const handleDeleteAllClick = () => {
     setTodoList([]);
+    localStorage.setItem('todoList', JSON.stringify([]));
   };
 
   return (

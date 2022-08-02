@@ -7,6 +7,7 @@ const List = React.memo(({todoList, setTodoList, data, provided, snapshot}) => {
   const handleDeleteClick = (id) => {
     let newTodoList = todoList.filter((data) => data.id !== id);
     setTodoList(newTodoList);
+    localStorage.setItem('todoList', JSON.stringify(newTodoList));
   };
 
   const handleCompleteChange = (id) => {
@@ -18,6 +19,7 @@ const List = React.memo(({todoList, setTodoList, data, provided, snapshot}) => {
     });
 
     setTodoList(newTodoList);
+    localStorage.setItem('todoList', JSON.stringify(newTodoList));
   };
 
   const handleEditChange = (e) => {
@@ -35,6 +37,7 @@ const List = React.memo(({todoList, setTodoList, data, provided, snapshot}) => {
     });
 
     setTodoList(newTodoList);
+    localStorage.setItem('todoList', JSON.stringify(newTodoList));
     setIsEditing(false);
   };
 

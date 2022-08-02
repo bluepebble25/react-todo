@@ -13,6 +13,7 @@ const Lists = React.memo(({todoList, setTodoList}) => {
     // 제거한 reorderedItem을 목적지에 insert한다.
     newTodoList.splice(result.destination.index, 0, reorderedItem);
     setTodoList(newTodoList);
+    localStorage.setItem('todoList', JSON.stringify(newTodoList));
   };
 
   return (
